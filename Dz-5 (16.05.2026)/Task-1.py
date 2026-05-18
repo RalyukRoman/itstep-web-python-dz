@@ -1,6 +1,10 @@
+from NonNegative import NonNegative
 import datetime
 
 class Car():
+    capacity = NonNegative("_capacity")
+    price = NonNegative("_price")
+
     def __init__(
             self,
             model: str = "", 
@@ -76,6 +80,9 @@ class Car():
             self.maker, self.capacity, 
             self.color, new_price)
 
+    def __call__(self, current_money: float) -> bool:
+        return current_money >= self.price
+
     @property
     def year(self):
         return self._year
@@ -86,26 +93,6 @@ class Car():
         if value < 1886 or value > current_year:
             raise ValueError(f"Рік випуску має бути від 1886 до {current_year}!")
         self._year = value
-
-    @property
-    def capacity(self):
-        return self._capacity
-
-    @capacity.setter
-    def capacity(self, value):
-        if value < 0:
-            raise ValueError("Об'єм двигуна не може бути від'ємним!")
-        self._capacity = value
-
-    @property
-    def price(self):
-        return self._price
-
-    @price.setter
-    def price(self, value):
-        if value < 0:
-            raise ValueError("Ціна не може бути від'ємною!")
-        self._price = value
 
     def input_data(self):
         print("\n-- Введіть дані про машину --")
@@ -171,9 +158,9 @@ print(car2)
 print('-' * 25, '\n')
 
 # Створення авто для порівняння
-car1 = Car("Model S", 2022, "Tesla", 0.0, "Червоний", 1850000)
-car2 = Car("Leaf", 2020, "Nissan", 0.0, "Білий", 750000)
-car3 = Car("Model S", 2023, "Tesla", 0.0, "Чорний", 2100000)
+car1 = Car("Model S", 2022, "Tesla", 10.0, "Червоний", 1850000)
+car2 = Car("Leaf", 2020, "Nissan", 14.5, "Білий", 750000)
+car3 = Car("Model S", 2023, "Tesla", 12.0, "Чорний", 2100000)
 
 # Порівняння цін на авто
 print(f"car1 ({car1.price} ₴) <  car2 ({car2.price} ₴):  {car1 < car2}")
@@ -187,4 +174,6 @@ print(f"Початкова ціна машини:  {car2.price:,.2f} ₴")
 car2 = car2 + 50000
 print(f"Ціна машини (+50 000):  {car2.price:,.2f} ₴")
 car2 = car2 - 100000
-print(f"Ціна машини (-100 000): {car2.price:,.2f} ₴")
+print(f"Ціна машини (-100 000): {car2.price:,.2f} ₴ \n")
+
+print(f"Чи вистачить 130,000 ₴ для покупки: {car2(80000)}")

@@ -1,6 +1,9 @@
+from NonNegative import NonNegative
 import datetime
 
 class Book():
+    price = NonNegative('_price')
+
     def __init__(
             self, 
             title: str = "", 
@@ -75,6 +78,9 @@ class Book():
             self.title, self.year,
             self.publisher, self.genre,
             self.author, new_price)
+    
+    def __call__(self, current_money: float) -> bool:
+        return current_money >= self.price
 
     @property
     def year(self):
@@ -86,16 +92,6 @@ class Book():
         if value < 1452 or value > current_year:
             raise ValueError(f"Рік видання має бути від 1452 до {current_year}!")
         self._year = value
-
-    @property
-    def price(self):
-        return self._price
-
-    @price.setter
-    def price(self, value):
-        if value < 0:
-            raise ValueError("Ціна не може бути від'ємною!")
-        self._price = value
 
     def input_data(self):
         print("\n-- Введіть дані про книгу --")
@@ -170,4 +166,6 @@ print(f"Початкова ціна книги: {book2.price:,.2f} ₴")
 book2 = book2 + 50
 print(f"Ціна книги (+50):     {book2.price:,.2f} ₴")
 book2 = book2 - 100
-print(f"Ціна книги (-100):    {book2.price:,.2f} ₴")
+print(f"Ціна книги (-100):    {book2.price:,.2f} ₴ \n")
+
+print(f"Чи вистачить 800 ₴ для покупки: {book2(80000)}")

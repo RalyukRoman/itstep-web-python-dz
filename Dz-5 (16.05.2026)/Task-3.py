@@ -1,6 +1,9 @@
+from NonNegative import NonNegative
 import datetime
 
 class Stadium():
+    capacity = NonNegative('_capacity')
+
     def __init__(
             self, 
             name: str = "", 
@@ -77,6 +80,9 @@ class Stadium():
             self.country, self.city,
             new_capacity)
     
+    def __call__(self, visitors_count: int) -> bool:
+        return visitors_count <= self.capacity
+    
     @property
     def date(self):
         return self._date
@@ -90,16 +96,6 @@ class Stadium():
         if value > datetime.date.today():
             raise ValueError(f"Дата відкриття має бути раніше за сьогодні!")
         self._date = value
-
-    @property
-    def capacity(self):
-        return self._capacity
-
-    @capacity.setter
-    def capacity(self, value):
-        if value < 0:
-            raise ValueError("Місткість не може бути від'ємною!")
-        self._capacity = value
 
     def input_data(self):
         print("\n-- Введіть дані про стадіон --")
@@ -163,4 +159,6 @@ print(f"Початкова місткість стадіону: {stadium2.capaci
 stadium2 = stadium2 + 5000
 print(f"Місткість стадіону (+5000):   {stadium2.capacity}")
 stadium2 = stadium2 - 10000
-print(f"Місткість стадіону (-10000):  {stadium2.capacity}")
+print(f"Місткість стадіону (-10000):  {stadium2.capacity} \n")
+
+print(f"Чи вмістить стадіон 80,000 глядачів: {stadium2(80000)}")
