@@ -7,12 +7,8 @@ from ShoeRepository import ShoeRepository
 def main() -> None:
     view = ShoeConsoleView()
     repository = ShoeRepository()
-
-    service = ShoeService(
-        shoe_repository=repository)
-    
-    controller = ShoeConsoleController(
-        shoe_service=service, shoe_view=view)
+    service = ShoeService(repository)
+    controller = ShoeConsoleController(service, view)
 
     print("=== Welcome to the Shoe Management System ===")
     while True:

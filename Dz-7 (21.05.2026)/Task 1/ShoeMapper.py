@@ -8,10 +8,13 @@ from ShoeDeleteResponse import ShoeDeleteResponse
 from ShoeErrorResponse import ShoeErrorResponse
 
 class ShoeMapper:
+    """ Utility mapper class responsible for converting data between different layers."""
+
     @staticmethod
     def map_create_to_entity(
         shoe_create_request: ShoeCreateRequest
     ) -> ShoeEntity:
+        """Converts an incoming creation request into a raw domain ShoeEntity."""
         return ShoeEntity(
             gender_type = shoe_create_request.gender_type,
             shoe_type = shoe_create_request.shoe_type,
@@ -26,6 +29,10 @@ class ShoeMapper:
         shoe_update_request: ShoeUpdateRequest,
         old_shoe: ShoeEntity
     ) -> ShoeEntity:
+        """
+        Merges an update request into an existing domain entity.
+        Only fields that are explicitly provided will overwrite the old data.
+        """
         update_data = {
             k: v for k, v in shoe_update_request.__dict__.items() 
             if v is not None
@@ -36,6 +43,7 @@ class ShoeMapper:
     def map_entity_to_response(
         shoe_entity: ShoeEntity
     ) -> ShoeResponse:
+        """Converts a domain ShoeEntity into an outgoing structured ShoeResponse."""
         return ShoeResponse(
             id = shoe_entity.id,
             gender_type = shoe_entity.gender_type,
@@ -51,6 +59,7 @@ class ShoeMapper:
     def map_entities_to_list_response(
         shoe_entities: list[ShoeEntity]
     ) -> list[ShoeResponse]:
+        """Transforms a collection of domain entities into a list of response."""
         return [
             ShoeMapper.map_entity_to_response(shoe) 
             for shoe in shoe_entities
@@ -60,6 +69,7 @@ class ShoeMapper:
     def map_delete_to_response(
         shoe_id: int
     ) -> ShoeDeleteResponse:
+        """Constructs a deletion response confirmation for a given resource ID."""
         return ShoeDeleteResponse(
             id = shoe_id,
             timestamp = datetime.now()
@@ -70,6 +80,7 @@ class ShoeMapper:
         message: str, 
         shoe_id: int | None = None
     ) -> ShoeErrorResponse:
+        """Wraps an error message and context ID into a standardized error response."""
         return ShoeErrorResponse(
             id = shoe_id,
             message = message,

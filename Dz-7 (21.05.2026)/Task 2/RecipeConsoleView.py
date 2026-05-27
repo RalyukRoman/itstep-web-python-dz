@@ -6,10 +6,12 @@ from RecipeCreateRequest import RecipeCreateRequest
 from RecipeEnums import RecipeType, NameOfCuisine
 
 class RecipeConsoleView:
+    """View class responsible for handling console UI presentation and user inputs."""
+
     @staticmethod
-    def display_recipe(
-        recipe: RecipeResponse
-    ) -> None:
+    def display_recipe(recipe: RecipeResponse) -> None:
+        """Prints the detailed information of a single recipe."""
+
         print("\n" + "=" * 40)
         print(f"Recipe (ID: {recipe.id})")
         print("-" * 40)
@@ -24,15 +26,14 @@ class RecipeConsoleView:
 
         print("-" * 40)
         print(f" Timestamp:    {
-            recipe.timestamp.strftime(
-                '%Y-%m-%d %H:%M:%S')
+            recipe.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }")
         print("=" * 40 + "\n")
 
     @staticmethod
-    def display_recipes_list(
-        recipes: list[RecipeResponse]
-    ) -> None:
+    def display_recipes_list(recipes: list[RecipeResponse]) -> None:
+        """Prints a collection of recipes formatted nicely as a text table."""
+
         if not recipes:
             print("\nNo recipes to display\n")
             return
@@ -51,27 +52,30 @@ class RecipeConsoleView:
         print("=" * 70 + "\n")
 
     @staticmethod
-    def display_deletion_result(
-        delete_response: RecipeDeleteResponse
-    ) -> None:
+    def display_deletion_result(delete_response: RecipeDeleteResponse) -> None:
+        """Displays confirmation message after successfully deleting a recipe."""
+
         print("\n" + "-" * 45)
         print(f"[SUCCESSFUL DELETE] — ID: {delete_response.id}")
         print(f"Timestamp: {
-            delete_response.timestamp.strftime(
-                '%Y-%m-%d %H:%M:%S')
+            delete_response.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }")
         print("-" * 45 + "\n")
 
     @staticmethod
-    def display_error_message(
-        message: str
-    ) -> None:
+    def display_success(message: str) -> None:
+        """Displays a simple success message."""
+        print(f"\n[SUCCESS]: {message}\n")
+
+    @staticmethod
+    def display_error_message(message: str) -> None:
+        """Displays a simple error message."""
         print(f"\n[ERROR]: {message}\n")
 
     @staticmethod
-    def display_error(
-        error_response: RecipeErrorResponse
-    ) -> None:
+    def display_error(error_response: RecipeErrorResponse) -> None:
+        """Displays a structured error response object"""
+
         print(f"\n[ERROR]: {error_response.message}\n")
         print(f"Timestamp: {
             error_response.timestamp.strftime(
@@ -79,14 +83,9 @@ class RecipeConsoleView:
         }")
 
     @staticmethod
-    def display_success(
-        message: str
-    ) -> None:
-        print(f"\n[SUCCESS]: {message}\n")
+    def get_recipe_id_input() -> int:
+        """Prompts user for a recipe ID and validates that it is a positive integer."""
 
-    @staticmethod
-    def get_recipe_id_input(
-    ) -> int:
         while True:
             try:
                 recipe_id = int(input("Enter recipe ID: "))
@@ -98,8 +97,9 @@ class RecipeConsoleView:
                 print("Please enter a valid number")
     
     @staticmethod
-    def get_recipe_create_input(
-    ) -> RecipeCreateRequest:
+    def get_recipe_create_input() -> RecipeCreateRequest:
+        """Сollects and validates all required input data to create a new recipe."""
+
         print("\n--- DATA ENTRY FOR CREATING SHOES ---")
 
         name = input("Name: ")
@@ -107,22 +107,24 @@ class RecipeConsoleView:
         
         print("Available categories: 1 - Italian, 2 - French, 3 - Ukrainian")
         cousine_choice = input("Choose a category (1-3): ")
+
         cousine_map = {
             "1": NameOfCuisine.ITALIAN, 
             "2": NameOfCuisine.FRENCH,
             "3": NameOfCuisine.UKRAINIAN
         }
-        name_of_cousine = cousine_map.get(
-            cousine_choice, NameOfCuisine.ITALIAN)
+
+        name_of_cousine = cousine_map.get(cousine_choice, NameOfCuisine.ITALIAN)
 
         print("Available types: 1 - First, 2 - Second")
         type_choice = input("Choose a view (1-2): ")
+
         types_map = {
             "1": RecipeType.FIRST, 
             "2": RecipeType.SECOND
         }
-        recipe_type = types_map.get(
-            type_choice, RecipeType.FIRST)
+
+        recipe_type = types_map.get(type_choice, RecipeType.FIRST)
 
         description = input("Description: ")
         link_video = input("Link of video: ")
@@ -141,8 +143,9 @@ class RecipeConsoleView:
         )
 
     @staticmethod
-    def get_recipe_update_input(
-    ) -> RecipeUpdateRequest:
+    def get_recipe_update_input() -> RecipeUpdateRequest:
+        """Collects optional update inputs, leaving blank fields as None."""
+
         print("\n--- EDIT SHOES (press Enter to leave unchanged) ---")
         
         description_input = input("Description: ")

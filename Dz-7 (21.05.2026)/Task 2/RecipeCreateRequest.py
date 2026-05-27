@@ -3,6 +3,8 @@ from RecipeEnums import NameOfCuisine, RecipeType
 
 @dataclass
 class RecipeCreateRequest:
+    """A data object containing the data needed to create a new recipe record."""
+
     name: str
     author: str
     type: RecipeType

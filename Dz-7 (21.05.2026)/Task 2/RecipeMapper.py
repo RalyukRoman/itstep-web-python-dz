@@ -8,10 +8,14 @@ from RecipeDeleteResponse import RecipeDeleteResponse
 from RecipeErrorResponse import RecipeErrorResponse
 
 class RecipeMapper:
+    """ Utility mapper class responsible for converting data between different layers."""
+
     @staticmethod
     def map_create_to_entity(
         recipe_create_request: RecipeCreateRequest
     ) -> RecipeEntity:
+        """Converts an incoming creation request into a raw domain RecipeEntity."""
+
         return RecipeEntity(
             name = recipe_create_request.name,
             author = recipe_create_request.author,
@@ -27,6 +31,10 @@ class RecipeMapper:
         recipe_update_request: RecipeUpdateRequest,
         old_recipe: RecipeEntity
     ) -> RecipeEntity:
+        """
+        Merges an update request into an existing domain entity.
+        Only fields that are explicitly provided will overwrite the old data.
+        """
         update_data = {
             k: v for k, v in recipe_update_request.__dict__.items() 
             if v is not None
@@ -37,6 +45,7 @@ class RecipeMapper:
     def map_entity_to_response(
         recipe_entity: RecipeEntity
     ) -> RecipeResponse:
+        """Converts a domain RecipeEntity into an outgoing structured RecipeResponse."""
         return RecipeResponse(
             id = recipe_entity.id,
             name = recipe_entity.name,
@@ -53,6 +62,7 @@ class RecipeMapper:
     def map_entities_to_list_response(
         recipe_entities: list[RecipeEntity]
     ) -> list[RecipeResponse]:
+        """Transforms a collection of domain entities into a list of response."""
         return [
             RecipeMapper.map_entity_to_response(recipe) 
             for recipe in recipe_entities
@@ -62,6 +72,7 @@ class RecipeMapper:
     def map_delete_to_response(
         recipe_id: int
     ) -> RecipeDeleteResponse:
+        """Constructs a deletion response confirmation for a given resource ID."""
         return RecipeDeleteResponse(
             id = recipe_id,
             timestamp = datetime.now()
@@ -72,6 +83,7 @@ class RecipeMapper:
         message: str, 
         recipe_id: int | None = None
     ) -> RecipeErrorResponse:
+        """Wraps an error message and context ID into a standardized error response."""
         return RecipeErrorResponse(
             id = recipe_id,
             message = message,

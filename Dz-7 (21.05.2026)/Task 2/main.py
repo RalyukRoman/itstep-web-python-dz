@@ -7,12 +7,8 @@ from RecipeRepository import RecipeRepository
 def main() -> None:
     view = RecipeConsoleView()
     repository = RecipeRepository()
-
-    service = RecipeService(
-        recipe_repository=repository)
-    
-    controller = RecipeConsoleController(
-        recipe_service=service, recipe_view=view)
+    service = RecipeService(repository)
+    controller = RecipeConsoleController(service, view)
 
     print("=== Welcome to the Recipe Management System ===")
     while True:

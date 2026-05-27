@@ -6,10 +6,12 @@ from ShoeCreateRequest import ShoeCreateRequest
 from ShoeEnums import GenderType, ShoeKind
 
 class ShoeConsoleView:
+    """View class responsible for handling console UI presentation and user inputs."""
+
     @staticmethod
-    def display_shoe(
-        shoe: ShoeResponse
-    ) -> None:
+    def display_shoe(shoe: ShoeResponse) -> None:
+        """Prints the detailed information of a single shoe item."""
+
         print("\n" + "=" * 40)
         print(f"Shoe (ID: {shoe.id})")
         print("-" * 40)
@@ -23,15 +25,14 @@ class ShoeConsoleView:
 
         print("-" * 40)
         print(f" Timestamp:    {
-            shoe.timestamp.strftime(
-                '%Y-%m-%d %H:%M:%S')
+            shoe.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }")
         print("=" * 40 + "\n")
 
     @staticmethod
-    def display_shoes_list(
-        shoes: list[ShoeResponse]
-    ) -> None:
+    def display_shoes_list(shoes: list[ShoeResponse]) -> None:
+        """Prints a collection of shoes formatted nicely as a text table."""
+
         if not shoes:
             print("\nNo shoes to display\n")
             return
@@ -51,42 +52,38 @@ class ShoeConsoleView:
         print("=" * 76 + "\n")
 
     @staticmethod
-    def display_deletion_result(
-        delete_response: ShoeDeleteResponse
-    ) -> None:
+    def display_deletion_result(delete_response: ShoeDeleteResponse) -> None:
+        """Displays confirmation message after successfully deleting a shoe."""
         print("\n" + "-" * 45)
         print(f"[SUCCESSFUL DELETE] — ID: {delete_response.id}")
         print(f"Timestamp: {
-            delete_response.timestamp.strftime(
-                '%Y-%m-%d %H:%M:%S')
+            delete_response.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }")
         print("-" * 45 + "\n")
 
     @staticmethod
-    def display_error_message(
-        message: str
-    ) -> None:
-        print(f"\n[ERROR]: {message}\n")
-
-    @staticmethod
-    def display_error(
-        error_response: ShoeErrorResponse
-    ) -> None:
-        print(f"\n[ERROR]: {error_response.message}\n")
-        print(f"Timestamp: {
-            error_response.timestamp.strftime(
-                '%Y-%m-%d %H:%M:%S')
-        }")
-
-    @staticmethod
-    def display_success(
-        message: str
-    ) -> None:
+    def display_success(message: str) -> None:
+        """Displays a simple success message."""
         print(f"\n[SUCCESS]: {message}\n")
 
     @staticmethod
-    def get_shoe_id_input(
-    ) -> int:
+    def display_error_message(message: str) -> None:
+        """Displays a simple error message."""
+        print(f"\n[ERROR]: {message}\n")
+
+    @staticmethod
+    def display_error(error_response: ShoeErrorResponse) -> None:
+        """Displays a structured error response object"""
+
+        print(f"\n[ERROR]: {error_response.message}\n")
+        print(f"Timestamp: {
+            error_response.timestamp.strftime('%Y-%m-%d %H:%M:%S')
+        }")
+
+    @staticmethod
+    def get_shoe_id_input() -> int:
+        """Prompts user for a shoe ID and validates that it is a positive integer."""
+
         while True:
             try:
                 shoe_id = int(input("Enter shoe ID: "))
@@ -98,8 +95,9 @@ class ShoeConsoleView:
                 print("Please enter a valid number")
     
     @staticmethod
-    def get_shoe_create_input(
-    ) -> ShoeCreateRequest:
+    def get_shoe_create_input() -> ShoeCreateRequest:
+        """Сollects and validates all required input data to create a new shoe."""
+       
         print("\n--- DATA ENTRY FOR CREATING SHOES ---")
         
         print("Available categories: 1 - Men's, 2 - Women's")
@@ -108,14 +106,15 @@ class ShoeConsoleView:
 
         print("Available types: 1 - Sneakers, 2 - Boots, 3 - Sandals, 4 - Shoes")
         kind_choice = input("Choose a view (1-4): ")
+
         kinds_map = {
             "1": ShoeKind.SNEAKERS, 
             "2": ShoeKind.BOOTS, 
             "3": ShoeKind.SANDALS, 
             "4": ShoeKind.SHOES
         }
-        shoe_type = kinds_map.get(
-            kind_choice, ShoeKind.SHOES)
+
+        shoe_type = kinds_map.get(kind_choice, ShoeKind.SHOES)
 
         color = input("Color: ")
         manufacturer = input("Manufacturer: ")
@@ -150,8 +149,9 @@ class ShoeConsoleView:
         )
 
     @staticmethod
-    def get_shoe_update_input(
-    ) -> ShoeUpdateRequest:
+    def get_shoe_update_input() -> ShoeUpdateRequest:
+        """Collects optional update inputs, leaving blank fields as None."""
+
         print("\n--- EDIT SHOES (press Enter to leave unchanged) ---")
         
         color_input = input("New color: ")

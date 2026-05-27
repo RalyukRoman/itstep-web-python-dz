@@ -3,6 +3,8 @@ from RecipeEnums import RecipeType, NameOfCuisine
 
 @dataclass
 class RecipeUpdateRequest:
+    """A data object containing the data needed to update a new recipe record."""
+
     id: int
     name: str               | None = None
     author: str             | None = None
