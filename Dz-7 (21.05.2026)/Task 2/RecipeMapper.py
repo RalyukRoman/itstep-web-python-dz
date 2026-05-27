@@ -8,13 +8,13 @@ from RecipeDeleteResponse import RecipeDeleteResponse
 from RecipeErrorResponse import RecipeErrorResponse
 
 class RecipeMapper:
-    """ Utility mapper class responsible for converting data between different layers."""
+    """Utility class to convert between domain entities and data transfer objects."""
 
     @staticmethod
     def map_create_to_entity(
         recipe_create_request: RecipeCreateRequest
     ) -> RecipeEntity:
-        """Converts an incoming creation request into a raw domain RecipeEntity."""
+        """Converts a RecipeCreateRequest object to a RecipeEntity object."""
 
         return RecipeEntity(
             name = recipe_create_request.name,
@@ -31,10 +31,8 @@ class RecipeMapper:
         recipe_update_request: RecipeUpdateRequest,
         old_recipe: RecipeEntity
     ) -> RecipeEntity:
-        """
-        Merges an update request into an existing domain entity.
-        Only fields that are explicitly provided will overwrite the old data.
-        """
+        """Merges an update request into an existing domain entity."""
+
         update_data = {
             k: v for k, v in recipe_update_request.__dict__.items() 
             if v is not None
@@ -46,6 +44,7 @@ class RecipeMapper:
         recipe_entity: RecipeEntity
     ) -> RecipeResponse:
         """Converts a domain RecipeEntity into an outgoing structured RecipeResponse."""
+
         return RecipeResponse(
             id = recipe_entity.id,
             name = recipe_entity.name,

@@ -3,10 +3,7 @@ from ShoeConsoleView import ShoeConsoleView
 from ShoeErrorResponse import ShoeErrorResponse
 
 class ShoeConsoleController:
-    """
-    Controller class that coordinates data flow between the ShoeService 
-    (Business Logic) and the ShoeConsoleView (UI Layer).
-    """
+    """Controller class that mediates communication between the View and Service layers."""
     
     def __init__(
         self, shoe_service: ShoeService, shoe_view: ShoeConsoleView
@@ -15,7 +12,7 @@ class ShoeConsoleController:
         self._shoe_view = shoe_view
 
     def get_and_display_shoe(self) -> None:
-        """Prompts the user for a shoe ID, fetches the shoe data, and displays it."""
+        """Retrieves and displays a shoe record."""
         
         try:
             shoe_id = self._shoe_view.get_shoe_id_input()

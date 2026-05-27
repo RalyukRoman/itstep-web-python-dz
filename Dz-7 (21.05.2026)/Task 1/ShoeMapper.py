@@ -8,13 +8,14 @@ from ShoeDeleteResponse import ShoeDeleteResponse
 from ShoeErrorResponse import ShoeErrorResponse
 
 class ShoeMapper:
-    """ Utility mapper class responsible for converting data between different layers."""
+    """Utility class to convert between domain entities and data transfer objects."""
 
     @staticmethod
     def map_create_to_entity(
         shoe_create_request: ShoeCreateRequest
     ) -> ShoeEntity:
-        """Converts an incoming creation request into a raw domain ShoeEntity."""
+        """Converts a ShoeCreateRequest object to a ShoeEntity object."""
+
         return ShoeEntity(
             gender_type = shoe_create_request.gender_type,
             shoe_type = shoe_create_request.shoe_type,
@@ -29,10 +30,8 @@ class ShoeMapper:
         shoe_update_request: ShoeUpdateRequest,
         old_shoe: ShoeEntity
     ) -> ShoeEntity:
-        """
-        Merges an update request into an existing domain entity.
-        Only fields that are explicitly provided will overwrite the old data.
-        """
+        """Merges an update request into an existing domain entity."""
+
         update_data = {
             k: v for k, v in shoe_update_request.__dict__.items() 
             if v is not None
@@ -44,6 +43,7 @@ class ShoeMapper:
         shoe_entity: ShoeEntity
     ) -> ShoeResponse:
         """Converts a domain ShoeEntity into an outgoing structured ShoeResponse."""
+        
         return ShoeResponse(
             id = shoe_entity.id,
             gender_type = shoe_entity.gender_type,

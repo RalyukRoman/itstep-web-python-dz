@@ -3,7 +3,7 @@ from RecipeEnums import RecipeType, NameOfCuisine
 
 @dataclass
 class RecipeUpdateRequest:
-    """A data object containing the data needed to update a new recipe record."""
+    """Data transfer object for recipes."""
 
     id: int
     name: str               | None = None

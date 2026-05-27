@@ -1,10 +1,7 @@
 from RecipeEntity import RecipeEntity
 
 class RecipeRepository:
-    """
-    In-memory repository implementing the Repository Pattern.
-    Acts as a mock database for managing RecipeEntity collections.
-    """
+    """A repository for storing and retrieving recipe entities."""
 
     def __init__(self):
         self._db = []

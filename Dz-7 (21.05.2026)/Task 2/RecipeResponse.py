@@ -5,7 +5,7 @@ from RecipeEnums import RecipeType, NameOfCuisine
 @dataclass
 class RecipeResponse:
     """
-    Data object containing the full read-ready data of a recipe,
+    Data object containing the full read-ready data of a recipe, 
     typically returned after successful operations.
     """
 

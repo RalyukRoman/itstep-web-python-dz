@@ -1,10 +1,7 @@
 from ShoeEntity import ShoeEntity
 
 class ShoeRepository:
-    """
-    In-memory repository implementing the Repository Pattern.
-    Acts as a mock database for managing ShoeEntity collections.
-    """
+    """A repository for storing and retrieving shoe entities."""
 
     def __init__(self) -> None:
         self._db = []

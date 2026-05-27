@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class ShoeErrorResponse:
-    """Data object used to carry failure details back to the presentation layer."""
+    """Data object used to carry failure details back to the UI layer."""
 
     id: int | None
     message: str

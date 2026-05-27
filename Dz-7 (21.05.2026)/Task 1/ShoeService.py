@@ -7,10 +7,7 @@ from ShoeDeleteResponse import ShoeDeleteResponse
 from ShoeErrorResponse import ShoeErrorResponse
 
 class ShoeService:
-    """
-    Service layer class that implements business logic rules and bridges 
-    communication between the Repository layer and the Controller layer.
-    """
+    """Service class for shoe operations."""
 
     def __init__(self, shoe_repository: ShoeRepository) -> None:
         self._shoe_repository = shoe_repository
@@ -21,10 +18,8 @@ class ShoeService:
         all_shoes_entity = self._shoe_repository.get_all_shoes()
         return ShoeMapper.map_entities_to_list_response(all_shoes_entity)
 
-    def get_shoe(
-        self, shoe_get_id: int
-    ) -> ShoeResponse | ShoeErrorResponse:
-        """Retrieves a single shoe by ID"""
+    def get_shoe(self, shoe_get_id: int) -> ShoeResponse | ShoeErrorResponse:
+        """Searches for a specific shoe by its unique identifier."""
         
         shoe_entity = self._shoe_repository.get_shoe(shoe_get_id)
 
@@ -38,7 +33,7 @@ class ShoeService:
     def create_shoe(
         self, shoe_create_request: ShoeCreateRequest
     ) -> ShoeResponse | ShoeErrorResponse:
-        """Creates a new shoe record based on the received data"""
+        """Assigns auto-incremented ID to the new shoe entityand persists it."""
 
         create_shoe_entity = ShoeMapper.map_create_to_entity(shoe_create_request)
         shoe_entity = self._shoe_repository.create_shoe(create_shoe_entity)
@@ -47,7 +42,7 @@ class ShoeService:
     def update_shoe(
         self, shoe_update_request: ShoeUpdateRequest
     ) -> ShoeResponse | ShoeErrorResponse:
-        """Applies partial updates to an existing shoe record."""
+        """Updates an existing shoe entity."""
 
         old_shoe_entity = self._shoe_repository.get_shoe(shoe_update_request.id)
         
@@ -66,7 +61,7 @@ class ShoeService:
     def delete_shoe(
         self, shoe_delete_id: int
     ) -> ShoeDeleteResponse | ShoeErrorResponse:
-        """Deletes existing shoe record by ID."""
+        """Removes a shoe entity from the database using its ID."""
 
         is_deleted = self._shoe_repository.delete_shoe(shoe_delete_id)
 

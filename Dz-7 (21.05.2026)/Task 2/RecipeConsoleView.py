@@ -6,11 +6,11 @@ from RecipeCreateRequest import RecipeCreateRequest
 from RecipeEnums import RecipeType, NameOfCuisine
 
 class RecipeConsoleView:
-    """View class responsible for handling console UI presentation and user inputs."""
+    """A class for interacting with the user through the terminal."""
 
     @staticmethod
     def display_recipe(recipe: RecipeResponse) -> None:
-        """Prints the detailed information of a single recipe."""
+        """Prints a single recipe formatted nicely as a text table."""
 
         print("\n" + "=" * 40)
         print(f"Recipe (ID: {recipe.id})")
@@ -84,7 +84,7 @@ class RecipeConsoleView:
 
     @staticmethod
     def get_recipe_id_input() -> int:
-        """Prompts user for a recipe ID and validates that it is a positive integer."""
+        """Collects and validates user input for a recipe ID."""
 
         while True:
             try:
@@ -98,8 +98,8 @@ class RecipeConsoleView:
     
     @staticmethod
     def get_recipe_create_input() -> RecipeCreateRequest:
-        """Сollects and validates all required input data to create a new recipe."""
-
+        """Collects optional create inputs, leaving blank fields as None."""
+   
         print("\n--- DATA ENTRY FOR CREATING SHOES ---")
 
         name = input("Name: ")

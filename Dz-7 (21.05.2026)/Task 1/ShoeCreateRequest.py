@@ -3,7 +3,7 @@ from ShoeEnums import GenderType, ShoeKind
 
 @dataclass
 class ShoeCreateRequest:
-    """A data object containing the data needed to create a new shoe record."""
+    """Data transfer object for shoes."""
 
     gender_type: GenderType
     shoe_type: ShoeKind

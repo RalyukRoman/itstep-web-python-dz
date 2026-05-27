@@ -7,10 +7,7 @@ from RecipeDeleteResponse import RecipeDeleteResponse
 from RecipeErrorResponse import RecipeErrorResponse
 
 class RecipeService:
-    """
-    Service layer class that implements business logic rules and bridges 
-    communication between the Repository layer and the Controller layer.
-    """
+    """Service class for recipe operations."""
 
     def __init__(self, recipe_repository: RecipeRepository):
         self._recipe_repository = recipe_repository
@@ -22,7 +19,7 @@ class RecipeService:
         return RecipeMapper.map_entities_to_list_response(all_recipes_entity)
 
     def get_recipe(self, recipe_get_id: int) -> RecipeResponse | RecipeErrorResponse:
-        """Retrieves a single recipe by ID"""
+        """Searches for a specific recipe by its unique identifier."""
 
         recipe_entity = self._recipe_repository.get_recipe(recipe_get_id)
         return RecipeMapper.map_entity_to_response(recipe_entity)
@@ -30,7 +27,7 @@ class RecipeService:
     def create_recipe(
         self, recipe_create_request: RecipeCreateRequest
     ) -> RecipeResponse | RecipeErrorResponse:
-        """Creates a new shoe record based on the received data"""
+        """Assigns auto-incremented ID to the new recipe entityand persists it."""
 
         create_recipe_entity = RecipeMapper.map_create_to_entity(recipe_create_request)
         recipe_entity = self._recipe_repository.create_recipe(create_recipe_entity)
@@ -39,7 +36,7 @@ class RecipeService:
     def update_recipe(
         self, recipe_update_request: RecipeUpdateRequest
     ) -> RecipeResponse | RecipeErrorResponse:
-        """Applies partial updates to an existing recipe record."""
+        """Updates an existing recipe entity."""
 
         old_recipe_entity = self._recipe_repository.get_recipe(recipe_update_request.id)
 
@@ -58,7 +55,7 @@ class RecipeService:
     def delete_recipe(
         self, recipe_delete_id: int
     ) -> RecipeDeleteResponse | RecipeErrorResponse:
-        """Deletes existing shoe record by ID."""
+        """Removes a recipe entity from the database using its ID."""
 
         is_deleted = self._recipe_repository.delete_recipe(recipe_delete_id)
 

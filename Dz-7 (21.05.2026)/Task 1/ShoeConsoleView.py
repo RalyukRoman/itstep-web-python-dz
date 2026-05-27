@@ -6,11 +6,11 @@ from ShoeCreateRequest import ShoeCreateRequest
 from ShoeEnums import GenderType, ShoeKind
 
 class ShoeConsoleView:
-    """View class responsible for handling console UI presentation and user inputs."""
+    """A class for interacting with the user through the terminal."""
 
     @staticmethod
     def display_shoe(shoe: ShoeResponse) -> None:
-        """Prints the detailed information of a single shoe item."""
+        """Prints a single shoe formatted nicely as a text table."""
 
         print("\n" + "=" * 40)
         print(f"Shoe (ID: {shoe.id})")
@@ -54,6 +54,7 @@ class ShoeConsoleView:
     @staticmethod
     def display_deletion_result(delete_response: ShoeDeleteResponse) -> None:
         """Displays confirmation message after successfully deleting a shoe."""
+
         print("\n" + "-" * 45)
         print(f"[SUCCESSFUL DELETE] — ID: {delete_response.id}")
         print(f"Timestamp: {
@@ -82,7 +83,7 @@ class ShoeConsoleView:
 
     @staticmethod
     def get_shoe_id_input() -> int:
-        """Prompts user for a shoe ID and validates that it is a positive integer."""
+        """Collects and validates user input for a shoe ID."""
 
         while True:
             try:
@@ -96,7 +97,7 @@ class ShoeConsoleView:
     
     @staticmethod
     def get_shoe_create_input() -> ShoeCreateRequest:
-        """Сollects and validates all required input data to create a new shoe."""
+        """Collects optional create inputs, leaving blank fields as None."""
        
         print("\n--- DATA ENTRY FOR CREATING SHOES ---")
         

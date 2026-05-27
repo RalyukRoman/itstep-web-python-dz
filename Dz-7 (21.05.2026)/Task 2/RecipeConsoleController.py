@@ -3,11 +3,8 @@ from RecipeConsoleView import RecipeConsoleView
 from RecipeErrorResponse import RecipeErrorResponse
 
 class RecipeConsoleController:
-    """
-    Controller class that coordinates data flow between the RecipeService 
-    (Business Logic) and the RecipeConsoleView (UI Layer).
-    """
-        
+    """Controller class that mediates communication between the View and Service layers."""
+       
     def __init__(
         self, recipe_service: RecipeService, recipe_view: RecipeConsoleView
     ) -> None:
@@ -15,8 +12,8 @@ class RecipeConsoleController:
         self._recipe_view = recipe_view
 
     def get_and_display_recipe(self) -> None:
-        """Prompts the user for a recipe ID, fetches the recipe data, and displays it."""
-
+        """Retrieves and displays a recipe record."""
+        
         try:
             recipe_id = self._recipe_view.get_recipe_id_input()
             recipe_response = self._recipe_service.get_recipe(recipe_id)
