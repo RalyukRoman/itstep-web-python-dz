@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FastAPI: Launch ShoeAPI",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "RecipeAPIController:app",
+                "--reload"
+            ],
+            "jinja": true,
+            "justMyCode": true
+        }
+    ]
+}
