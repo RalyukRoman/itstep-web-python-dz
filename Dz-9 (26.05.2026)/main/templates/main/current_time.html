@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Завдання 3</title>
+    <style>
+      body {
+        padding: 0 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Завдання 3</h2>
+    <p>
+      Поточна дата та час:
+      <strong id="live-clock">Завантаження...</strong>
+    </p>
+
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleString("uk-UA");
+
+        document.getElementById("live-clock").innerText = timeString;
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+  </body>
+</html>
