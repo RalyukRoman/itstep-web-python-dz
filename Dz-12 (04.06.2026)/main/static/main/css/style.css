@@ -1,0 +1,235 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.main-header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.city-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #2c3e50;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.site-tagline {
+    font-size: 0.85rem;
+    color: #3498db;
+    font-weight: 600;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #3498db;
+}
+
+.nav-menu .nav-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu .nav-btn:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+.hero {
+    background-color: #2c3e50;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    color: #ecf0f1;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.photo-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+    transform: translateY(-5px);
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:hover .photo-item {
+    background-color: #ecf0f1;
+    border-color: #3498db;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-content {
+    padding: 15px;
+}
+
+.photo-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: #34495e;
+}
+
+.photo-content p {
+    margin: 0 0 15px 0;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.photo-content small {
+    color: #95a5a6;
+    display: block;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.empty-msg {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    grid-column: 1 / -1;
+    padding: 50px;
+}
+
+.news-item {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.news-text {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.nav-back {
+    margin-bottom: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.nav-back:hover {
+    text-decoration: underline;
+}
+
+.info-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #3498db;
+    border-radius: 4px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.date-meta {
+    color: #7f8c8d;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.site-footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #666;
+    padding-bottom: 20px;
+}

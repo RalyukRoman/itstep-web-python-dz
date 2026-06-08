@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Цікаві факти про місто
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'index' %}" class="nav-back">
+    ← На головну
+  </a>
+
+  <h1>Цікаві факти про наше місто</h1>
+
+  <div class="gallery">
+    {% for fact in list_of_facts %}
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>{{ fact.title }}</h3>
+          <div class="fact-text">
+            {{ fact.content|linebreaks }}
+          </div>
+        </div>
+      </article>
+
+      {% empty %}
+        <p class="empty-msg">
+          На жаль, ми ще не зібрали цікавих фактів. 
+          Повертайтеся згодом!
+        </p>
+    {% endfor %}
+  </div>
+{% endblock %}

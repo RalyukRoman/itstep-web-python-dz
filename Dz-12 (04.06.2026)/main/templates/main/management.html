@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Керівництво міста
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'index' %}" class="nav-back">
+    ← На головну
+  </a>
+
+  <h1>Керівництво нашого міста</h1>
+
+  <div class="gallery">
+    {% for official in list_of_officials %}
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>{{ official.name }}</h3>
+          <p>
+            <strong>
+              {{ official.position }}
+            </strong>
+          </p>
+          <div class="news-text">
+            {{ official.description|linebreaks }}
+          </div>
+        </div>
+      </article>
+      
+      {% empty %}
+        <div class="empty-msg">
+          Інформація про керівництво наразі відсутня.
+        </div>
+    {% endfor %}
+  </div>
+{% endblock %}

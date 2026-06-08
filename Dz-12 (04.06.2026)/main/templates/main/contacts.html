@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Контакти
+{% endblock %} 
+
+{%block content %}
+  <a href="{% url 'index' %}" class="nav-back">
+    ← На головну
+  </a>
+
+  <h1>Контактна інформація</h1>
+
+  <div class="news-item">
+    <div class="news-text">
+      <p>
+        <strong>Адреса міської ради:</strong> 
+        м. Херсон, площа Свободи, 1
+      </p>
+      <p>
+        <strong>Гаряча лінія:</strong> 
+        0-800-501-404
+      </p>
+      <p>
+        <strong>Електронна пошта:</strong> 
+        info@miskrada.kherson.ua
+      </p>
+
+      <h3 style="margin-top: 20px">
+        Графік роботи:
+      </h3>
+      <ul>
+        <li>Понеділок — П'ятниця: 08:00 — 17:00</li>
+        <li>Перерва: 12:00 — 13:00</li>
+        <li>Субота, Неділя: Вихідний</li>
+      </ul>
+
+      <div class="info-box">
+        <p>
+          <strong>Важливо:</strong> 
+          У зв'язку з поточною безпековою ситуацією прийом 
+          громадян може бути обмежений. Рекомендуємо використовувати 
+          електронні засоби зв'язку або гарячу лінію.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

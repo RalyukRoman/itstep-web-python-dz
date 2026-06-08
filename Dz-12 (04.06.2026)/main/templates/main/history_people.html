@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Видатні особистості
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'history' %}" class="nav-back">
+    ← Назад до історії
+  </a>
+  
+  <h1>Видатні особистості Херсона</h1>
+
+  <div class="people-list">
+    {% for person in people %}
+      <div class="photo-item news-item">
+        <div class="photo-content">
+          <h3>{{ person.name }}</h3>
+          <p class="date-meta">
+            {{ person.birth_date|date:"d.m.Y" }} — 
+            {{ person.death_date|date:"d.m.Y" }}
+          </p>
+          <div class="news-text">
+            <p>{{ person.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      {% empty %}
+        <p class="empty-msg">
+          На жаль, інформації про видатних діячів 
+          поки немає в базі даних.
+        </p>
+    {% endfor %}
+  </div>
+{% endblock %}

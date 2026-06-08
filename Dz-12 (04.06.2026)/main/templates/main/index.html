@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Офіційний портал міста
+{% endblock %}
+
+{% block content %}
+  <header class="hero">
+    <h1>Вітаємо у Херсоні!</h1>
+    <p>
+      Місто-герой, символ незламності та 
+      південна перлина України
+    </p>
+  </header>
+
+  <div class="gallery">
+    <a href="{% url 'history' %}" class="card-link">
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>📜 Історія</h3>
+          <p>
+            Дізнайтеся про багате минуле нашого міста від 
+            заснування до героїчної сучасності.
+          </p>
+        </div>
+      </article>
+    </a>
+
+    <a href="{% url 'management' %}" class="card-link">
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>🏛️ Керівництво</h3>
+          <p>
+            Інформація про міську владу та структуру 
+            управління містом.
+          </p>
+        </div>
+      </article>
+    </a>
+
+    <a href="{% url 'facts' %}" class="card-link">
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>💡 Цікаві факти</h3>
+          <p>
+            Унікальні особливості та маловідомі факти про 
+            наш рідний край.
+          </p>
+        </div>
+      </article>
+    </a>
+
+    <a href="{% url 'news' %}" class="card-link">
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>📰 Новини</h3>
+          <p>
+            Свіжі новини, події та офіційні повідомлення 
+            громади.
+          </p>
+        </div>
+      </article>
+    </a>
+
+    <a href="{% url 'contacts' %}" class="card-link">
+      <article class="photo-item">
+        <div class="photo-content">
+          <h3>📞 Контакти</h3>
+          <p>
+            Зворотний зв'язок, гарячі лінії та адреси 
+            установ.
+          </p>
+        </div>
+      </article>
+    </a>
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Новини міста
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'index' %}" class="nav-back">
+    ← На головну
+  </a>
+  
+  <h1>Останні новини нашого міста</h1>
+
+  <div class="news-list">
+    {% for news in list_of_news %}
+      <article class="photo-item news-item">
+        <div class="photo-content">
+          <h3>{{ news.title }}</h3>
+          <div class="news-text">
+            {{ news.content|linebreaks }}
+          </div>
+          <small>
+            Опубліковано: 
+            {{ news.pub_date|date:"d.m.Y H:i" }}
+          </small>
+        </div>
+      </article>
+
+      {% empty %}
+        <div class="empty-msg">
+          На даний момент новин немає. 
+          Заходьте пізніше!
+        </div>
+    {% endfor %}
+  </div>
+{% endblock %}

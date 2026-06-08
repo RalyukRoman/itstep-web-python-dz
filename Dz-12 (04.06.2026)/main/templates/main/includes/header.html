@@ -1,0 +1,21 @@
+<header class="main-header">
+    <div class="header-content">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <span class="city-name">Херсон</span>
+                <span class="site-tagline">Офіційний портал</span>
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="{% url 'index' %}">Головна</a></li>
+                <li><a href="{% url 'history' %}">Історія</a></li>
+                <li><a href="{% url 'management' %}">Керівництво</a></li>
+                <li><a href="{% url 'facts' %}">Цікаві факти</a></li>
+                <li><a href="{% url 'news' %}">Новини</a></li>
+                <li><a href="{% url 'contacts' %}" class="nav-btn">Контакти</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
