@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    {{ writer.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <article class="writer-profile">
+            <h1>{{ writer.name }}</h1>
+
+            <div class="bio">
+                {{ writer.bio | linebreaks }}
+            </div>
+            
+            <h2>Книги автора:</h2>
+
+            <ul class="book-list">
+                {% for book in books %}
+                    <li>
+                        <a href="{% url 'writer_book_detail' writer.slug book.slug %}">
+                            {{ book.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </article>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Наші Письменники
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Наші Письменники</h1>
+
+        <div class="grid">
+            {% for writer in writers %}
+                <div class="card writer-card">
+                    <div>
+                        <h3 class="writer-name">
+                            {{ writer.name }}
+                        </h3>
+                        
+                        <p class="writer-bio">
+                            {{ writer.bio | truncatewords:25 }}
+                        </p>
+                    </div>
+                    
+                    <div class="actions">
+                        <a href="{% url 'writer_detail' writer.slug %}" 
+                           class="btn small">
+                            Переглянути профіль
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

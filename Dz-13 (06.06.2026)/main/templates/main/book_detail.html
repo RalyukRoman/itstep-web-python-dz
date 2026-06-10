@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    {{ book.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="book-detail">
+            <a href="{% url 'books_top' %}" class="back-link">
+                &larr; Назад до рейтингу
+            </a>
+
+            <div class="book-header">
+                <div class="title-group">
+                    <h1 class="book-title">
+                        {{ book.title }}
+                    </h1>
+                    {% if book.top_place %}
+                        <span class="rank-badge">
+                            #{{ book.top_place }} в топі
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="author-info">
+                    <span class="label">
+                        Автор:
+                    </span>
+                    <a href="{% url 'writer_detail' book.writer.slug %}" 
+                       class="author-link">
+                        {{ book.writer.name }}
+                    </a>
+                </div>
+            </div>
+            
+            <div class="book-content">
+                <h2 class="book-section-heading">
+                    Про книгу
+                </h2>
+                <div class="description">
+                    {{ book.description|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

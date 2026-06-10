@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      {% block title %}
+        Книги і письменники
+      {% endblock %}
+    </title>
+
+    <link 
+      rel="stylesheet"
+      href="{% static 'main/css/style.css' %}" 
+    />
+  </head>
+  
+  <body>
+    {% include 'main/includes/header.html' %}
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    {% include 'main/includes/footer.html' %}
+  </body>
+</html>

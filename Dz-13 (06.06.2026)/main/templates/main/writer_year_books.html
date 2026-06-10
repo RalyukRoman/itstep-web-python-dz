@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Книги {{ writer.name }} за {{ year }} рік
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="book-header">
+            <h1 class="book-title">
+                Книги автора: {{ writer.name }}
+            </h1>
+            <p class="author-info">
+                Результати пошуку за <strong>{{ year }}</strong> рік
+            </p>
+        </div>
+
+        {% if books %}
+            <div class="grid">
+                {% for book in books %}
+                    <div class="card">
+                        <h3 class="writer-name">
+                            {{ book.title }}
+                        </h3>
+                        
+                        <div class="writer-bio">
+                            {{ book.description|truncatewords:30 }}
+                        </div>
+
+                        <div class="actions">
+                            <a href="{% url 'writer_book_detail' writer.slug book.slug %}" 
+                               class="btn">
+                                Детальніше
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>На жаль, за цей рік книг не знайдено.</p>
+        {% endif %}
+    </div>
+{% endblock %}

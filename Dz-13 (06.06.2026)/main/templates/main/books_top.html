@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Топ книг
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Рейтинг найкращих книг</h1>
+
+        <div class="grid">
+            {% for book in books %}
+                <div class="card book-card">
+                    <div class="badge"> 
+                        #{{ book.top_place }}
+                    </div>
+                    
+                    <h3>{{ book.title }}</h3>
+
+                    <p>
+                        Автор: 
+                        <strong>
+                            {{ book.writer.name }}
+                        </strong>
+                    </p>
+
+                    <div class="actions">
+                        <a href="{% url 'book_detail' book.top_place %}" 
+                           class="btn small">
+                            Переглянути деталі
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

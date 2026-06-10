@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Головна - Книжковий Світ
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="hero">
+            <h1>Ласкаво просимо до нашої бібліотеки!</h1>
+            <p>Тут ви знайдете інформацію про найкращих авторів та їхні видатні твори.</p>
+            
+            <a href="{% url 'books_top' %}" class="btn">
+                Переглянути топ книг
+            </a>
+        </div>
+    </div>
+{% endblock %}
