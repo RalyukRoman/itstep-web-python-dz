@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ day.name }}</title>
+    <link rel="stylesheet" href="{% static 'weekdays/css/weekdays_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Сьогодні {{ day.name }}</h1>
+            </div>
+            <div class="card-body">
+                <img src="{% static day.image_path %}" 
+                     alt="{{ day.name }}" 
+                     class="day-image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

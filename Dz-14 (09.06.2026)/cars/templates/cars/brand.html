@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ brand.name }}</title>
+    <link rel="stylesheet" href="{% static 'cars/css/cars_style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>{{ brand.name }}</h1>
+            </div>
+
+            <div class="card-body">
+                {% if brand.description %}
+                    <p>{{ brand.description|linebreaksbr }}</p>
+                {% else %}
+                    <p>Опис для цього бренду відсутній.</p>
+                {% endif %}
+            </div>
+
+            <div class="card-footer">
+                <a href="{% url 'cars_main' %}" class="back-link">
+                    ← Повернутися до головної
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

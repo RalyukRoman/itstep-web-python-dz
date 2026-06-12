@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ headphone.name }}</title>
+    <link rel="stylesheet" href="{% static 'headphones/css/headphones_style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>{{ headphone.name }}</h1>
+                <span class="slug">
+                    ID: {{ headphone.slug }}
+                </span>
+            </div>
+        
+            <div class="card-body">
+                <h3>Опис моделі</h3>
+                {% if headphone.description %}
+                    {{ headphone.description|linebreaks }}
+                {% else %}
+                    <p>Опис для цієї моделі поки що відсутній.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
