@@ -1,10 +1,22 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+
+from django.core.validators import (
+    MinValueValidator, 
+    MaxValueValidator,
+    MinLengthValidator
+)
 
 
 class AppReview(models.Model):
     """Модель відгуків на додатки"""
-    nickname = models.CharField("Нік", max_length=50)
+
+    # Нік від 3 до 50 символів
+    nickname = models.CharField(
+        "Нік", 
+        max_length=50,
+        validators=[MinLengthValidator(3)]
+    )
+    
     email = models.EmailField("Email")
     
     # Зірки від 1 до 5
@@ -26,7 +38,12 @@ class AppReview(models.Model):
 class BookReview(models.Model):
     """Модель відгуків на книги"""
 
-    nickname = models.CharField("Нік", max_length=50)
+    # Нік від 3 до 50 символів
+    nickname = models.CharField(
+        "Нік", 
+        max_length=50,
+        validators=[MinLengthValidator(3)]
+    )
 
     # Рейтинг від 0 до 100
     rating = models.IntegerField(
