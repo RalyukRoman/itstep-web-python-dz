@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Відгуки та Рецензії</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light p-4">
+    <div class="container">
+        <div class="card p-4 shadow-sm mb-4">
+            <h2>Рецензія на книгу</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ book_form.as_p }}
+
+                <button type="submit" name="submit_book" 
+                        class="btn btn-success">
+                    Надіслати рецензію
+                </button>
+            </form>
+        </div>
+
+        {% for review in book_reviews %}
+            <div class="alert alert-info shadow-sm">
+                <p>
+                    <strong>Автор рецензії:</strong> 
+                    {{ review.nickname }}
+                </p>
+
+                <p>
+                    <strong>Рейтинг книги:</strong> 
+                    <span class="badge bg-secondary">
+                        {{ review.rating }} / 100
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Спойлери:</strong> 
+                    {% if review.has_spoilers %}
+                        <span class="text-danger">⚠️ Наявні спойлери!</span>
+                    {% else %}
+                        Немає
+                    {% endif %}
+                </p>
+                
+                <p><strong>Текст рецензії:</strong></p>
+                <blockquote class="bg-white p-3 border rounded">
+                    {{ review.review_text|linebreaks }}
+                </blockquote>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

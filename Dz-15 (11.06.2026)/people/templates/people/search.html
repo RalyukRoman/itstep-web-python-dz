@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Пошук людей</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light p-4">
+    <div class="container" style="max-width: 800px;">
+        <div class="card p-4 shadow-sm mb-4">
+            <h2>Пошук інформації про людину</h2>
+            <form method="get">
+                {{ form.as_p }}
+                <button class="btn btn-primary w-100"
+                        type="submit">
+                    Пошук
+                </button>
+            </form>
+        </div>
+
+        <h3>
+            Результати пошуку 
+            (Знайдено: {{ page_obj.paginator.count }})
+        </h3>
+        
+        {% if page_obj %}
+            <div class="list-group mb-4 shadow-sm">
+                {% for person in page_obj %}
+                    <div class="list-group-item list-group-item-action">
+                        <h5 class="mb-1">{{ person.full_name }}</h5>
+                        <p class="mb-1">
+                            <strong>Місто:</strong> {{ person.city }} | 
+                            <strong>День народження:</strong> {{ person.birthday|date:"d.m.Y"}}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page=1{% if query_params %}&{{ query_params }}{% endif %}"
+                               class="page-link fw-bold" aria-label="Перша">
+                                &laquo;&laquo;
+                            </a>
+                        </li>
+                        
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}{% if query_params %}&{{ query_params }}{% endif %}"
+                               class="page-link fw-bold" aria-label="Назад">
+                                &lsaquo;
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == num %} active {% endif %}">
+                            <a href="?page={{ num }}{% if query_params %}&{{ query_params }}{% endif %}"
+                               class="page-link">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.next_page_number }}{% if query_params %}&{{ query_params }}{% endif %}"
+                               class="page-link fw-bold" aria-label="Вперед">
+                                &rsaquo;
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.paginator.num_pages }}{% if query_params %}&{{ query_params }}{% endif %}"
+                               class="page-link fw-bold" aria-label="Остання">
+                                &raquo;&raquo;
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% else %}
+            <div class="alert alert-warning">
+                Нікого не знайдено за вказаними критеріями
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
